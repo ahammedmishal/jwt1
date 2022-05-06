@@ -42,13 +42,13 @@ const Signup = ({navigation}) => {
         country,
         });
   
-        const {accessToken, refreshToken} = response.data;
+        const {access, refresh} = response.data;
         let userInfo = response.data;
         setUserInfo(userInfo);
         console.log(userInfo);
         authContext.setAuthState({
-          accessToken,
-          refreshToken,
+          access,
+          refresh,
           authenticated: true,
         });
         onClearCredentials()

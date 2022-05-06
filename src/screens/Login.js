@@ -27,24 +27,21 @@ const Login = ({navigation}) => {
         password,
       });
 
-      // const {accessToken, refreshToken} = response.data;
-      const accessToken = response.data.access;
-      const refreshToken = response.data.refresh;
-      // let userInfo = response.data;
-      // setUserInfo(userInfo);
-      // console.log("Accces Token",accessToken);
-      // console.log("Refresh Token",refreshToken);
+      const {refresh, access} = response.data;
+
+      let userInfo = response.data;
+      setUserInfo(userInfo);
       authContext.setAuthState({
-        accessToken : accessToken,
-        refreshToken : refreshToken,
+        access ,
+        refresh , 
         authenticated: true,
       });
 
       await Keychain.setGenericPassword(
         'token',
         JSON.stringify({
-          accessToken,
-          refreshToken,
+          access,
+          refresh,
         }),
       );
     } catch (error) {

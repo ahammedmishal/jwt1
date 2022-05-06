@@ -31,18 +31,7 @@ const Dashboard = () => {
         console.log(error)
       }
     }
-
     getUsers();
-
-  //   const api = 'http://45.63.18.150:9090/accounts/get_user_profile'; 
-  //   const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyNjAyMDQ0LCJpYXQiOjE2NTE3MzgwNDQsImp0aSI6ImE0ZThmNWRiNjViZTRjOWI4OGI2MGIwMDQ1ZTRkMjkzIiwidXNlcl9pZCI6MTZ9.WE3KNk8m7oYg7uD-VSTsD8zIDulGdvNr2Q9edt9w0ps'
-
-    axiosContext.authAxios.get('/get_user_profile')
-    .then(res => {
-      console.log(res.data);
-      }).catch((error) => {
-        console.log(error)
-      });
 
       const checkUserStatus = async () => {
         try {
@@ -67,10 +56,10 @@ const Dashboard = () => {
   return (
     <View style={styles.container}>
      
-        <Text>user:{userInfo.name}</Text>
-        <Text>name:</Text>
-        <Text>country:</Text>
-        <Text>province:</Text>
+        <Text>user:{userInfo.user}</Text>
+        <Text>name:{userInfo.name}</Text>
+        <Text>country:{userInfo.country}</Text>
+        <Text>province:{userInfo.province}</Text>
 
       <View style={styles.buttonGroup}>
       {/* <Button title="Get user" onPress={onGetUserProfile} /> */}

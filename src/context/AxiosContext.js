@@ -12,7 +12,6 @@ const AxiosProvider = ({children}) => {
 
   const authAxios = axios.create({
     baseURL: 'http://45.63.18.150:9090/accounts/',
-    headers:{'Content-Type':'application/json'},
   });
 
   const publicAxios = axios.create({
@@ -35,7 +34,7 @@ const AxiosProvider = ({children}) => {
 
   const refreshAuthLogic = failedRequest => {
     const data = {
-      refreshToken: authContext.authState.refreshToken,
+      refresh: authContext.authState.refresh,
     };
 
     const options = {
@@ -47,7 +46,7 @@ const AxiosProvider = ({children}) => {
     return axios(options)
       .then(async tokenRefreshResponse => {
         failedRequest.response.config.headers.Authorization =
-          'Bearer ' + tokenRefreshResponse.data.accessToken;
+          'Bearer ' + tokenRefreshResponse.data.access;
 
         authContext.setAuthState({
           ...authContext.authState,
@@ -57,8 +56,8 @@ const AxiosProvider = ({children}) => {
         await Keychain.setGenericPassword(
           'token',
           JSON.stringify({
-            accessToken: tokenRefreshResponse.data.accessToken,
-            refreshToken: authContext.authState.refreshToken,
+            access: tokenRefreshResponse.data.access,
+            refresh: authContext.authState.refresh,
           }),
         );
 
@@ -66,8 +65,8 @@ const AxiosProvider = ({children}) => {
       })
       .catch(e => {
         authContext.setAuthState({
-          accessToken: null,
-          refreshToken: null,
+          access: null,
+          refresh: null,
         });
       });
   };

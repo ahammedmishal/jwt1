@@ -23,17 +23,17 @@ const Navigation = ()=>{
       const jwt = JSON.parse(value.password);
 
       authContext.setAuthState({
-        accessToken: jwt.accessToken || null,
-        refreshToken: jwt.refreshToken || null,
-        authenticated: jwt.accessToken !== null,
+        access: jwt.access || null,
+        refresh: jwt.refresh || null,
+        authenticated: jwt.access !== null,
       });
       setStatus('success');
     } catch (error) {
       setStatus('error');
       console.log(`Keychain Error: ${error.message}`);
       authContext.setAuthState({
-        accessToken: null,
-        refreshToken: null,
+        access: null,
+        refresh: null,
         authenticated: false,
       });
     }
